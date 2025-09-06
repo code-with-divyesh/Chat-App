@@ -27,8 +27,10 @@ const ChatRoom = () => {
   };
 
   return (
-    <div>
+    <div className="chat-container">
       <h1>Chat Room</h1>
+
+      {/* Messages List */}
       <ul>
         {messages.map((m, idx) => (
           <li key={idx}>
@@ -36,19 +38,23 @@ const ChatRoom = () => {
           </li>
         ))}
       </ul>
-      <input
-        type="text"
-        placeholder="Enter Your Name"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Enter Your message Here.."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={sendMessage}>Send</button>
+
+      {/* Input Area */}
+      <div className="input-area">
+        <input
+          type="text"
+          placeholder="Enter Your Name"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Enter Your message Here.."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button onClick={sendMessage}>Send</button>
+      </div>
     </div>
   );
 };
