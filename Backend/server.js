@@ -9,7 +9,10 @@ const ChatMessage = require("./Model/ChatMessage");
 const app = express();
 const server = http.createServer(app); // HTTP server for Socket.io
 const io = new Server(server, {
-  cors: { origin: "*", methods: ["GET", "POST"] }, // frontend URL after deployment
+  cors: {
+    origin: "https://chat-app-sigma-ten-42.vercel.app/",
+    methods: ["GET", "POST"],
+  }, // frontend URL after deployment
 });
 app.use(cors());
 app.use(express.json());
@@ -44,7 +47,7 @@ io.on("connection", (socket) => {
       console.error(err);
     }
   });
-    socket.on("disconnect", () => console.log("User disconnected:", socket.id));
+  socket.on("disconnect", () => console.log("User disconnected:", socket.id));
 });
 
 const PORT = process.env.PORT || 5000;
