@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app); // HTTP server for Socket.io
 const io = new Server(server, {
   cors: {
-    origin: "https://chat-app-sigma-ten-42.vercel.app/",
+    origin: "https://chat-app-sigma-ten-42.vercel.app",
     methods: ["GET", "POST"],
   }, // frontend URL after deployment
 });
