@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: chat-backend
+    env: node
+    root: backend # ✅ backend folder path
+    buildCommand: npm install
+    startCommand: node server.js
