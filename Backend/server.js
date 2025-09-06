@@ -3,6 +3,7 @@ dotenv.config();
 const express = require("express");
 const { Server, Socket } = require("socket.io");
 const cors = require("cors");
+const http = require("http");
 const connectDB = require("./Config/db");
 const chatRouter = require("./Routes/ChatRoute");
 const ChatMessage = require("./Model/ChatMessage");
