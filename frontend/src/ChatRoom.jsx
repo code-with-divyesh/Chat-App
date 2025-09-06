@@ -27,10 +27,8 @@ const ChatRoom = () => {
   };
 
   return (
-    <div className="chat-container">
+    <div>
       <h1>Chat Room</h1>
-
-      {/* Messages List */}
       <ul>
         {messages.map((m, idx) => (
           <li key={idx}>
@@ -38,9 +36,7 @@ const ChatRoom = () => {
           </li>
         ))}
       </ul>
-
-      {/* Input Area */}
-      <div className="input-area">
+      <div className="form-row">
         <input
           type="text"
           placeholder="Enter Your Name"
