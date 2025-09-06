@@ -9,16 +9,25 @@ const chatRouter = require("./Routes/ChatRoute");
 const ChatMessage = require("./Model/ChatMessage");
 const app = express();
 const server = http.createServer(app); // HTTP server for Socket.io
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://chat-app-sigma-ten-42.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 const io = new Server(server, {
   cors: {
-    origin: [
-      "http://localhost:5173", // ✅ local React dev server
-      "https://chat-app-sigma-ten-42.vercel.app", // ✅ deployed frontend
-    ],
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
   }, // frontend URL after deployment
 });
-app.use(cors());
+
 app.use(express.json());
 
 connectDB();
