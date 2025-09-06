@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatRoom from "./ChatRoom";
 import "./App.css";
+import CaptchaPage from "../Recaptcha/CaptchaPage";
 const App = () => {
+  const [isVerified, setIsVerified] = useState(false);
   return (
     <div className="App">
-      <ChatRoom />
+      {!isVerified ? (
+        <CaptchaPage onVerified={() => setIsVerified(true)} />
+      ) : (
+        <ChatRoom />
+      )}
     </div>
   );
 };
