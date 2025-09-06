@@ -12,7 +12,7 @@ const server = http.createServer(app); // HTTP server for Socket.io
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:5176", // ✅ local React dev server
+      "http://localhost:5173", // ✅ local React dev server
       "https://chat-app-sigma-ten-42.vercel.app", // ✅ deployed frontend
     ],
     methods: ["GET", "POST"],
