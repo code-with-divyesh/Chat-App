@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
   // listen for new message
   socket.on("sendMessage", (data) => {
     const newMessage = {
-      user: data.user,
+      user: data.userId,
       message: data.message,
       time: new Date().toISOString(),
     };
