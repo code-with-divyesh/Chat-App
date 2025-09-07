@@ -1,15 +1,14 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
-const { Server, Socket } = require("socket.io");
+const { Server } = require("socket.io");
 const cors = require("cors");
 const http = require("http");
-const connectDB = require("./Config/db");
-const chatRouter = require("./Routes/ChatRoute");
-const ChatMessage = require("./Model/ChatMessage");
+
 const app = express();
-const captchaRouter = require("./Routes/captchaRoute");
-const server = http.createServer(app); // HTTP server for Socket.io
+const server = http.createServer(app);
+
+// Allowed origins
 const allowedOrigins = [
   "http://localhost:5173",
   "https://chat-app-sigma-ten-42.vercel.app",
@@ -22,51 +21,51 @@ app.use(
     credentials: true,
   })
 );
+
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
     methods: ["GET", "POST"],
-  }, // frontend URL after deployment
+  },
 });
 
 app.use(express.json());
 
-connectDB();
+// 🟢 Temporary in-memory messages (RAM only)
+let messages = [];
 
-app.use("/api/chat", chatRouter);
 app.get("/", (req, res) => {
-  res.send("Server running🫡👌");
+  res.send("Server running🫡👌 (RAM storage)");
 });
 
-//socket-io
+// socket.io
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
-  ChatMessage.find()
-    .then((message) => socket.emit("initialMessages", message))
-    .catch((err) => console.log(err));
+  // send all existing messages (from RAM)
+  socket.emit("initialMessages", messages);
 
-  //for listen new message
-  socket.on("sendMessage", async (data) => {
-    try {
-      const newMessage = new ChatMessage({
-        user: data.user,
-        message: data.message,
-      });
-      await newMessage.save();
+  // listen for new message
+  socket.on("sendMessage", (data) => {
+    const newMessage = {
+      user: data.user,
+      message: data.message,
+      time: new Date().toISOString(),
+    };
 
-      // Broadcast to all connected clients
-      io.emit("newMessage", newMessage);
-    } catch (err) {
-      console.error(err);
-    }
+    // store in RAM
+    messages.push(newMessage);
+
+    // broadcast to everyone
+    io.emit("newMessage", newMessage);
   });
-  socket.on("disconnect", () => console.log("User disconnected:", socket.id));
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
 });
-app.use("/", captchaRouter);
 
 const PORT = process.env.PORT || 5000;
-
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
