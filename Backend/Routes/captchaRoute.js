@@ -1,5 +1,5 @@
 const express = require("express");
-const { verifyCaptcha } = require("../Controllers/captchaController");
+const { verifyCaptcha } = require("../Controller/captchaController");
 
 const router = express.Router();
 
