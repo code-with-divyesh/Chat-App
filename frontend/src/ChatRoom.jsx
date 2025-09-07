@@ -3,10 +3,9 @@ import { io } from "socket.io-client";
 import "./ChatRoom.css";
 
 // Connect to backend
-const socket = io("https://chat-app-b64m.onrender.com/");
+const socket = io("https://chat-app-b64m.onrender.com/"); // ya aapka server URL
 
 const ChatRoom = () => {
-  // Unique ID for this user
   const [userId] = useState(() => Math.random().toString(36).substr(2, 9));
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -18,9 +17,16 @@ const ChatRoom = () => {
     socket.on("initialMessages", (data) => setMessages(data));
     socket.on("newMessage", (data) => setMessages((prev) => [...prev, data]));
 
+    // Listen for server's clearMessages event
+    socket.on("clearMessages", () => {
+      setMessages([]);
+      setConnected(false);
+    });
+
     return () => {
       socket.off("initialMessages");
       socket.off("newMessage");
+      socket.off("clearMessages");
     };
   }, []);
 
@@ -37,11 +43,10 @@ const ChatRoom = () => {
     }
   };
 
-  // Disconnect chat (clear messages locally)
+  // Disconnect chat (notify server)
   const disconnectChat = () => {
     if (window.confirm("Really disconnect?")) {
-      setMessages([]);
-      setConnected(false);
+      socket.emit("disconnectChat"); // server ko notify
     }
   };
 
