@@ -8,10 +8,13 @@
 .chat-header {
   background: #4a76a8;
   color: white;
-  margin-top: 10px;
-  padding: 10px;
+  padding: 12px;
   text-align: center;
-  flex-shrink: 0; /* shrink na ho */
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: sticky; /* header hamesha top pe chipak ke rahe */
+  top: 0;
+  z-index: 10;
 }
 
 .chat-box {
