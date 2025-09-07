@@ -1,34 +1,71 @@
-h1 {
-  color: #00246b;
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* पूरा viewport cover करे */
+  max-height: 100vh;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background-color: #8ab6f9;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-input {
-  padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #00246b;
-  border-radius: 5px;
-}
-button {
-  padding: 10px;
-  background-color: #00246b;
+.chat-header {
+  background: #4a76a8;
   color: white;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  flex-shrink: 0; /* shrink na ho */
+}
+
+.chat-box {
+  flex: 1; /* बीच का area बचे उतना space ले */
+  overflow-y: auto; /* सिर्फ यही scroll होगा */
+  padding: 10px;
+  background: #f4f4f4;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  max-width: 70%;
+}
+
+.message.you {
+  background: #d1e7ff;
+  align-self: flex-end;
+  color: blue;
+}
+
+.message.stranger {
+  background: #e9e9e9;
+  align-self: flex-start;
+  color: red;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #ccc;
+  flex-shrink: 0; /* नीचे fix रहे */
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  padding: 8px 12px;
+  margin-left: 5px;
   border: none;
-  border-radius: 5px;
+  background: #4a76a8;
+  color: white;
+  border-radius: 4px;
   cursor: pointer;
 }
-button:hover {
-  background-color: #8ab6f9;
-  color: #00246b;
+
+.chat-input button:hover {
+  background: #3b5f87;
 }
