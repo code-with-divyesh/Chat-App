@@ -4,7 +4,7 @@ const express = require("express");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const http = require("http");
-
+const captchaRouter = require("./Routes/captchaRoute");
 const app = express();
 const server = http.createServer(app);
 
@@ -30,7 +30,7 @@ const io = new Server(server, {
 });
 
 app.use(express.json());
-
+app.use("/", captchaRouter);
 // 🟢 Temporary in-memory messages (RAM only)
 let messages = [];
 
