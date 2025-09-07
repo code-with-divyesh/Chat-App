@@ -22,6 +22,8 @@
   overflow-y: auto;
   padding: 10px;
   background: #f4f4f4;
+  padding-top: 60px;
+  box-sizing: border-box;
 }
 
 .message {
@@ -81,9 +83,9 @@
   }
 
   .chat-box {
-    margin-top: 15px;
-    padding: 8px;
-    font-size: 0.9rem;
+    padding-top: 50px;
+    margin-top: 5px;
+    font-size: 1rem;
   }
 
   .message {
