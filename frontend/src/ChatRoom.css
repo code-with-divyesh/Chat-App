@@ -69,3 +69,65 @@
 .chat-input button:hover {
   background: #3b5f87;
 }
+
+/* 📱 Mobile (up to 480px) */
+@media (max-width: 480px) {
+  .chat-header {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .chat-box {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .message {
+    max-width: 85%; /* bubble thoda bada mobile par */
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .chat-input {
+    flex-direction: column; /* button neeche chala jayega */
+    gap: 8px;
+  }
+
+  .chat-input input {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .chat-input button {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 📲 Tablet (481px - 768px) */
+@media (max-width: 768px) {
+  .chat-header {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+
+  .chat-box {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .message {
+    max-width: 80%;
+    font-size: 1rem;
+  }
+
+  .chat-input input {
+    font-size: 1rem;
+  }
+
+  .chat-input button {
+    font-size: 1rem;
+    padding: 9px 14px;
+  }
+}
