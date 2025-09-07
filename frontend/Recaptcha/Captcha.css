@@ -1,0 +1,109 @@
+/* Full screen center + gradient bg */
+.captcha-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #445e75, #206468);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Main title */
+.captcha-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtitle */
+.captcha-subtitle {
+  font-size: 1rem;
+  color: #eaf6ff;
+  margin-bottom: 30px;
+}
+
+/* Card glass effect */
+.captcha-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: white;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Heading inside card */
+.captcha-card h2 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Stylish button */
+.captcha-btn {
+  margin-top: 20px;
+  background: #475f74;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.captcha-btn:hover {
+  background: #00c6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 📱 Mobile (up to 480px) */
+@media (max-width: 480px) {
+  .captcha-title {
+    font-size: 1.8rem;
+  }
+
+  .captcha-card {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .captcha-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .captcha-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 📲 Tablet (481px - 768px) */
+@media (max-width: 768px) {
+  .captcha-title {
+    font-size: 2rem;
+  }
+
+  .captcha-card {
+    padding: 25px 30px;
+    max-width: 80%;
+  }
+
+  .captcha-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .captcha-btn {
+    padding: 11px 22px;
+    font-size: 1rem;
+  }
+}
