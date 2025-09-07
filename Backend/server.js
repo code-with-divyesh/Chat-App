@@ -8,6 +8,7 @@ const connectDB = require("./Config/db");
 const chatRouter = require("./Routes/ChatRoute");
 const ChatMessage = require("./Model/ChatMessage");
 const app = express();
+const captchaRouter = require("./Routes/captchaRoute");
 const server = http.createServer(app); // HTTP server for Socket.io
 const allowedOrigins = [
   "http://localhost:5173",
@@ -62,6 +63,7 @@ io.on("connection", (socket) => {
   });
   socket.on("disconnect", () => console.log("User disconnected:", socket.id));
 });
+app.use("/", captchaRouter);
 
 const PORT = process.env.PORT || 5000;
 
