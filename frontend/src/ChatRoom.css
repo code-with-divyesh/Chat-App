@@ -1,8 +1,9 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* पूरा viewport cover करे */
+  height: 100vh;
   max-height: 100vh;
+  overflow: hidden; /* container scroll na ho */
 }
 
 .chat-header {
@@ -12,18 +13,17 @@
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  flex-shrink: 0; /* header shrink na ho */
 }
 
 .chat-box {
-  flex: 1;
-  overflow-y: auto;
+  flex: 1; /* beech ka area bacha utna space le */
+  overflow-y: auto; /* sirf messages scroll honge */
   padding: 10px;
   background: #f4f4f4;
-  padding-top: 60px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
@@ -35,7 +35,7 @@
 
 .message.you {
   background: #d1e7ff;
-  align-self: flex-end;
+  align-self: flex-start;
   color: blue;
 }
 
@@ -50,7 +50,7 @@
   padding: 10px;
   background: white;
   border-top: 1px solid #ccc;
-  flex-shrink: 0;
+  flex-shrink: 0; /* input box fixed rahe */
 }
 
 .chat-input input {
@@ -83,8 +83,7 @@
   }
 
   .chat-box {
-    padding-top: 50px;
-    margin-top: 5px;
+    padding: 8px;
     font-size: 1rem;
   }
 
