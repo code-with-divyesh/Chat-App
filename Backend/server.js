@@ -31,6 +31,7 @@ const io = new Server(server, {
 
 app.use(express.json());
 app.use("/", captchaRouter);
+
 // 🟢 Temporary in-memory messages (RAM only)
 let messages = [];
 
@@ -58,6 +59,13 @@ io.on("connection", (socket) => {
 
     // broadcast to everyone
     io.emit("newMessage", newMessage);
+  });
+
+  // ✅ Listen for disconnectChat event
+  socket.on("disconnectChat", () => {
+    console.log("User requested disconnect:", socket.id);
+    messages = []; // clear messages in RAM
+    io.emit("clearMessages"); // tell all clients to clear
   });
 
   socket.on("disconnect", () => {
